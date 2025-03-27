@@ -1,7 +1,13 @@
 import streamlit as st
+import sys
+import os
+
+# Add src directory to Python path
+sys.path.append(os.path.abspath("src"))
+
 import pandas as pd
 from io import StringIO
-from src.aspen_comp_finder.classic_finder import ClassicCompFinder
+from aspen_comp_finder.classic_finder import ClassicCompFinder
 
 st.set_page_config(page_title="Aspen Blueprint - Comp Finder", layout="wide")
 st.title("🌼 Aspen Blueprint - Comparable Property Finder")
@@ -13,7 +19,6 @@ This MVP auto-loads our scored Aspen dataset and runs the ClassicCompFinder engi
 
 # --- Load Data Once ---
 @st.cache_data
-
 def load_default_data():
     finder = ClassicCompFinder()  # Uses default CSV path logic
     return finder
